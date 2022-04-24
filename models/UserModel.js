@@ -1,7 +1,7 @@
 /*
  * @Author: Ue
  * @Date: 2022-04-18 15:12:40
- * @LastEditTime: 2022-04-18 18:15:05
+ * @LastEditTime: 2022-04-23 12:36:20
  * @LastEditors: Ue
  * @FilePath: /work-space/backstage-management-server/models/UserModel.js
  */
@@ -39,3 +39,5 @@ UserModel.findOne({ username: "admin" }).then(
     console.log("Error: ", err);
   }
 );
+
+module.exports = UserModel;
