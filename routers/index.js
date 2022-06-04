@@ -1,9 +1,9 @@
 /*
  * @Author: Ue
  * @Date: 2022-04-19 03:02:05
- * @LastEditTime: 2022-04-24 10:10:28
+ * @LastEditTime: 2022-06-04 09:09:17
  * @LastEditors: Ue
- * @FilePath: /work-space/backstage-management-server/routers/index.js
+ * @FilePath: /backstage-management-server/routers/index.js
  */
 const express = require("express");
 const md5 = require("blueimp-md5");
@@ -163,8 +163,15 @@ router.post("/manage/category/update", (req, res) => {
   const { categoryId, categoryName } = req.body;
   CategoryModel.findOneAndUpdate({ _id: categoryId }, { name: categoryName })
     .then((oldCategory) => {
-      const data = Object.assign(oldCategory, { name: categoryName });
-      res.send({ status: 0, data });
+      if (!oldCategory) {
+        res.send({
+          status: 1,
+          msg: "未查询到对应id分类！请确认输入的id是否存在。",
+        });
+      } else {
+        const data = Object.assign(oldCategory, { name: categoryName });
+        res.send({ status: 0, data });
+      }
     })
     .catch((error) => {
       console.error("更新分类名称异常！", error);
