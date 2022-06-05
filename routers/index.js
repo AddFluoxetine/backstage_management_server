@@ -1,7 +1,7 @@
 /*
  * @Author: Ue
  * @Date: 2022-04-19 03:02:05
- * @LastEditTime: 2022-06-04 09:09:17
+ * @LastEditTime: 2022-06-05 09:45:07
  * @LastEditors: Ue
  * @FilePath: /backstage-management-server/routers/index.js
  */
@@ -166,7 +166,7 @@ router.post("/manage/category/update", (req, res) => {
       if (!oldCategory) {
         res.send({
           status: 1,
-          msg: "未查询到对应id分类！请确认输入的id是否存在。",
+          msg: "未查询到对应id分类！请确认输入的id是否存在！",
         });
       } else {
         const data = Object.assign(oldCategory, { name: categoryName });
@@ -189,6 +189,26 @@ router.get("/manage/category/info", (req, res) => {
     .catch((error) => {
       console.error("获取分类信息异常", error);
       res.send({ status: 1, msg: "获取分类信息异常，请重试！" });
+    });
+});
+
+// 删除分类
+router.post("/manage/category/delete", (req, res) => {
+  const { categoryId } = req.body;
+  CategoryModel.findOneAndDelete({ _id: categoryId })
+    .then((category) => {
+      if (!category) {
+        res.send({
+          status: 1,
+          msg: "未查询到对应id分类！请确认输入的id是否存在！",
+        });
+      } else {
+        res.send({ status: 0, data: category });
+      }
+    })
+    .catch((error) => {
+      console.error("删除分类功能异常", error);
+      res.send({ status: 1, msg: "删除分类功能异常，请重试！" });
     });
 });
 
