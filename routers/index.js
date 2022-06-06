@@ -1,7 +1,7 @@
 /*
  * @Author: Ue
  * @Date: 2022-04-19 03:02:05
- * @LastEditTime: 2022-06-05 09:45:07
+ * @LastEditTime: 2022-06-06 15:06:55
  * @LastEditors: Ue
  * @FilePath: /backstage-management-server/routers/index.js
  */
@@ -329,8 +329,9 @@ function pageFilter(arr, pageNum, pageSize) {
   pageNum = pageNum * 1;
   pageSize = pageSize * 1;
   const total = arr.length;
+  // 向下取整
   const pages = Math.floor((total + pageSize - 1) / pageSize);
-  const start = pageSize * pageNum - 1;
+  const start = pageSize * (pageNum - 1);
   const end = start + pageSize <= total ? start + pageSize : total;
   const list = [];
   for (let i = start; i < end; i++) {
