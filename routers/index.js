@@ -1,7 +1,7 @@
 /*
  * @Author: Ue
  * @Date: 2022-04-19 03:02:05
- * @LastEditTime: 2022-06-06 15:06:55
+ * @LastEditTime: 2022-06-09 10:48:31
  * @LastEditors: Ue
  * @FilePath: /backstage-management-server/routers/index.js
  */
@@ -225,7 +225,7 @@ router.post("/manage/product/add", (req, res) => {
     });
 });
 
-// 获取产品分业列表
+// 获取产品分页列表
 router.get("/manage/product/list", (req, res) => {
   const { pageNum, pageSize } = req.query;
   ProductModel.find({})
