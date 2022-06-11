@@ -1,7 +1,7 @@
 /*
  * @Author: Ue
  * @Date: 2022-04-19 03:02:05
- * @LastEditTime: 2022-06-09 10:48:31
+ * @LastEditTime: 2022-06-11 20:37:40
  * @LastEditors: Ue
  * @FilePath: /backstage-management-server/routers/index.js
  */
@@ -240,7 +240,7 @@ router.get("/manage/product/list", (req, res) => {
 
 // 搜索产品列表
 router.get("/manage/product/search", (req, res) => {
-  const { pageNum, pageSize, searchName, productName, productDesc } = req.query;
+  const { pageNum, pageSize, productName, productDesc } = req.query;
   let condition = {};
   if (productName) {
     condition = { name: new RegExp(`^.*${productName}.*$`) };
