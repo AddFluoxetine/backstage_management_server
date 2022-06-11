@@ -1,7 +1,7 @@
 /*
  * @Author: Ue
  * @Date: 2022-04-19 03:02:05
- * @LastEditTime: 2022-06-11 20:37:40
+ * @LastEditTime: 2022-06-11 20:45:12
  * @LastEditors: Ue
  * @FilePath: /backstage-management-server/routers/index.js
  */
@@ -245,7 +245,7 @@ router.get("/manage/product/search", (req, res) => {
   if (productName) {
     condition = { name: new RegExp(`^.*${productName}.*$`) };
   } else {
-    condition = { name: new RegExp(`^.*${productDesc}.*$`) };
+    condition = { desc: new RegExp(`^.*${productDesc}.*$`) };
   }
   ProductModel.find(condition)
     .then((products) => {
